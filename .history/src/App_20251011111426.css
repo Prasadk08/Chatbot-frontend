@@ -1,0 +1,16 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+h1{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  background-color: rebeccapurple;
+  margin: 0 auto;
+}
