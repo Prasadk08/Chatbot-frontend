@@ -35,7 +35,7 @@ export default function ChatArea({ chat, updateMessages }) {
         const formData = new FormData();
         formData.append("file", file);
 
-        const res = await axios.post("http://localhost:8080/upload", formData);
+        const res = await axios.post("https://chatbot-backend-8a81.onrender.com/upload", formData);
         toast.success("File uploaded successfully!");
         console.log("Uploaded:", res.data);
         setFile(null);
@@ -48,7 +48,7 @@ export default function ChatArea({ chat, updateMessages }) {
         updateMessages(chat.id, updatedMessages);
         setInput("");
 
-        const res = await axios.post("http://localhost:8080/ask", {
+        const res = await axios.post("https://chatbot-backend-8a81.onrender.com/ask", {
           question: input,
         });
         const botMessage = { role: "bot", text: res.data.answer };
