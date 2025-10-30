@@ -19,7 +19,7 @@ export default function ChatArea({ chat, updateMessages }) {
   if (!chat) {
     return (
       <div className="flex-1 flex items-center justify-center text-2xl">
-        Welcome to PDF Chatter 
+        Welcome to PDF Chatter
       </div>
     );
   }
@@ -35,7 +35,10 @@ export default function ChatArea({ chat, updateMessages }) {
         const formData = new FormData();
         formData.append("file", file);
 
-        const res = await axios.post("https://chatbot-backend-8a81.onrender.com/upload", formData);
+        const res = await axios.post(
+          "https://chatbot-backend-8a81.onrender.com/upload",
+          formData
+        );
         toast.success("File uploaded successfully!");
         console.log("Uploaded:", res.data);
         setFile(null);
@@ -48,9 +51,13 @@ export default function ChatArea({ chat, updateMessages }) {
         updateMessages(chat.id, updatedMessages);
         setInput("");
 
-        const res = await axios.post("https://chatbot-backend-8a81.onrender.com/ask", {
-          question: input,
-        });
+        const res = await axios.post(
+          "https://chatbot-backend-8a81.onrender.com/ask",
+          {
+            question: input,
+            history: chat.messages,
+          }
+        );
         const botMessage = { role: "bot", text: res.data.answer };
         updateMessages(chat.id, [...updatedMessages, botMessage]);
       }
